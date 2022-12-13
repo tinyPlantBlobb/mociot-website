@@ -1,25 +1,25 @@
 var canvas = document.querySelector( 'canvas' );
-            var context = canvas.getContext( '2d' );
-            function setup() {
+    var context = canvas.getContext( '2d' );
+    function setup() {
 
-                resize();
-                window.addEventListener( 'resize', resize );
-                window.addEventListener('load', setup, false);
-                window.addEventListener('change', draw, false);
-            }
-            function resize() {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-            }
-            setup();
+        resize();
+        window.addEventListener( 'resize', resize );
+        window.addEventListener('load', setup, false);
+       
+    }
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight -100;
+    }
+    setup();
 height,
 width,
+ window.addEventListener('change', draw, false);
 
 
 
 
-
-// function draw(){
+ function draw(){
 //     //var contxt = (a canvas context);
     
 //     cxt.clearRect(0,0,width,height);
@@ -28,17 +28,16 @@ width,
     
 //     cxt.textAlign="start";
     
-//     cxt.fillText(window.innerWidths, 0, 0);
-//     var inp = document.getElementById('input');
-//     let inputs = inp.value;
+//     .fillText(window.innerWidths, 0, 0);
+    var inp = document.getElementById('input');
+    let inputs = inp.value;
     
-//     cxt.font="bold 12px arial";
+    canvas.font="bold 12px arial";
     
-//     cxt.textAlign="start";
-    
-//     cxt.fillText(inputs, 100, 100)
-//     inp.value = '';
-// }
+    context.textAlign="start";
+    context.fillText(inputs, 100, 100)
+    inp.value = '';
+ }
 
 
 // audio control 
