@@ -1,48 +1,24 @@
 var canvas = document.querySelector( 'canvas' );
-var context = canvas.getContext( '2d' );
-function setup() {
+            var context = canvas.getContext( '2d' );
+            function setup() {
 
-    resize();
-    window.addEventListener( 'resize', resize );
-}
-function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-}
-setup();
-
-
-//  var cnvs=document.querySelector('canvas');
-// var cxt= cnvs.getContext('2d');
-// height,
-// width,
+                resize();
+                window.addEventListener( 'resize', resize );
+                window.addEventListener('load', setup, false);
+                window.addEventListener('change', draw, false);
+            }
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            setup();
+height,
+width,
 
 
-// function initiate(){
-//     resize();
-//     window.addEventListener('load', initiate, false);
-//     window.addEventListener('change', draw, false);
-//     window.addEventListener('resize', resize );
-// }
 
-// function resize(){
 
-//     heigth = cxt.height = window.innerHeight;
 
-//     width = cxt.width = window.innerWidth;
-    
-    
-    
-    
-//     cxt.fillText(window.innerWidth, 300,300);
-    
-//     cxt.fillRect(0,0,200,200);
-    
-//     cxt.strokeStyle = "#000099";
-    
-//     cxt.strokeRect(0,0,width,height);
-
-// }
 // function draw(){
 //     //var contxt = (a canvas context);
     
