@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="de">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="device-width" user-scalable="no">
         <title>throw words into the void</title>
         <link rel="stylesheet" type="text/css" href="text.css">
-        <script src="animation.js"></script>
+
         <nav>
             <a href="index.html">start</a>
         </nav>
-
+        <section id="input-section"><input type="text" id="input"></section>
     </head>
     <body>
-        <input type="text" id="input">
+
         <section id="player">
-            <audio controls
+            <audio id="audioplayer" controls
                 autoplay
                 loop>
                 <source
@@ -22,19 +24,16 @@
                     browser doesn't support the audio tag, here is an
                     alternative</a>
             </audio>
-            <!-- <iframe width="560" height="50"
+            <!-- <iframe width="560" height="50" id = "audioplayer"
                 src="https://www.youtube.com/embed/BJ2QbySTPuY" title="YouTube
                 video player" frameborder="0" allow="accelerometer; autoplay;
                 clipboard-write; encrypted-media; gyroscope;
                 picture-in-picture"></iframe> -->
         </section>
-
-        <div id="canvasbox">
-            <canvas id="canvas" width="500", height="400">
-
-                Ihr browser unterstützt das canvas element nicht.
-            </canvas>
-        </div>
+        <canvas width="480" height="580">
+            Ihr browser unterstützt das canvas element nicht.
+        </canvas>
+        <script src="animation.js"></script>
 
     </body>
 
