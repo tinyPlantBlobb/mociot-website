@@ -20,7 +20,7 @@ width,
 
 
  function draw(){
-//     //var contxt = (a canvas context);
+    // var contxt = (a, canvas, context);
     
     context.clearRect(0,0,width,height);
 
@@ -29,15 +29,16 @@ width,
     
     context.textAlign="left";
     
-//     .fillText(window.innerWidths, 0, 0);
+
     var inp = document.getElementById('input');
     let inputs = inp.value;
     
     canvas.font="bold 12px arial";
-    // len = canvas.measureText(inputs).width;
-    context.textAlign="left";
-    // context.fillText(len, 0,0);
-    context.fillText(inputs, width/2, height)
+    var len = context.measureText(inputs);
+
+    context.textAlign="center";
+
+    context.fillText(inputs, (width/2), height)
     inp.value = '';
  }
 
