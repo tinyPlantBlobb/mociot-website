@@ -22,20 +22,22 @@ width,
  function draw(){
 //     //var contxt = (a canvas context);
     
-//     cxt.clearRect(0,0,width,height);
+    context.clearRect(0,0,width,height);
+
     
-//     cxt.font="bold 12px arial";
+    context.font="bold 24px arial";
     
-//     cxt.textAlign="start";
+    context.textAlign="left";
     
 //     .fillText(window.innerWidths, 0, 0);
     var inp = document.getElementById('input');
     let inputs = inp.value;
     
     canvas.font="bold 12px arial";
-    
-    context.textAlign="start";
-    context.fillText(inputs, 100, 100)
+    // len = canvas.measureText(inputs).width;
+    context.textAlign="left";
+    // context.fillText(len, 0,0);
+    context.fillText(inputs, width/2, height)
     inp.value = '';
  }
 

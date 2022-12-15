@@ -2,7 +2,8 @@
 
 html, body{
     background-color: green;
-
+    display:flexbox;
+    -ms-flex-item-align: center;
     background-image: url(https://64.media.tumblr.com/821e07ca0747b893f035c038d11aabb2/ae60ecf83402c716-38/s1280x1920/d8c9ab9022097f812ca92402aa3144a36e8b69ee.pnj);
 }
 
@@ -22,7 +23,7 @@ html, body{
 }
 
 #canvas{
-    display: block;
+
 
     margin:1rem;
     padding: 0;
@@ -32,7 +33,8 @@ head{
     flex-direction: row;
 }
 #input{
-    align-self: center;
+    margin-left: 15%;
+    
     height: min-content;
-    width: auto;
+    width: 70%;
 }
