@@ -5,26 +5,33 @@ var canvas = document.querySelector( 'canvas' );
         resize();
         window.addEventListener( 'resize', resize );
         window.addEventListener('load', setup, false);
+        var inp = document.getElementById('input');
+        inp.value = '';
        
     }
+    
     function resize() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight -100;
+        ypos = height;
+    }
+
+    function clear() {
+        context.fillStyle="rgba(255, 255, 255, 0.03)";
+        context.fillRect(0,0,width,height);
+        // context.clearRect(0,0,width,height);
     }
     setup();
-height,
-width,
- window.addEventListener('change', draw, false);
-
-
+    height,
+    width,
+    ypos,
+    window.addEventListener('change', draw, false);
 
 
  function draw(){
     // var contxt = (a, canvas, context);
-    
-    context.clearRect(0,0,width,height);
-
-    
+    clear();
+    // 
     context.font="bold 24px arial";
     
     context.textAlign="left";
@@ -32,15 +39,41 @@ width,
 
     var inp = document.getElementById('input');
     let inputs = inp.value;
-    
+
     canvas.font="bold 12px arial";
-    var len = context.measureText(inputs);
 
-    context.textAlign="center";
-
-    context.fillText(inputs, (width/2), height)
     inp.value = '';
+    render(inputs);
+
+    // 
+    
  }
+function render(text) {
+    clear();
+    context.textAlign="center";
+    context.fillStyle ="rgba(0,0,0,1)"
+    context.fillText(text, (width/2), ypos);
+    if(ypos>0){
+        ypos = ypos -0.1;
+
+    }
+    // if(ypos<=0){
+    //     window.requestAnimationFrame(raf);
+    // }
+    // raf = window.requestAnimationFrame(render(text));
+}
+
+//  let x = 50;
+//  let y = 50;
+//  let lastRender = Date.now();
+//  function render() {
+//    let delta = Date.now() - lastRender;
+//    x += delta;
+//    y += delta;
+//    context.fillRect(x, y, x+10, y+10);
+//    
+//  }
+//  render();
 
 
 // audio control 
