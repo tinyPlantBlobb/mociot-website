@@ -4,23 +4,21 @@ html, body{
     background-color: green;
     display:flexbox;
     -ms-flex-item-align: center;
-    background-image: url(https://64.media.tumblr.com/821e07ca0747b893f035c038d11aabb2/ae60ecf83402c716-38/s1280x1920/d8c9ab9022097f812ca92402aa3144a36e8b69ee.pnj);
+    
 }
 
 #navbar{
     margin: 0;
     padding: 1rem;
     box-sizing: border-box;
-    display: flex;
+    display:inline-flex;
     width: fit-content;
     max-width: 50%;
     border: 1rem;
     border-color: black;
     background: lightblue;
 }
-#player{
-    align-self: top right;
-}
+
 
 #canvas{
 

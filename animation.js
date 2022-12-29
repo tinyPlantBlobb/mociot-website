@@ -1,16 +1,21 @@
 var canvas = document.querySelector( 'canvas' );
     var context = canvas.getContext( '2d' );
+    let input;
+    let raf;
     function setup() {
 
         resize();
+        context.font="bold 30px arial";
+        
+        context.textAlign="center";
         window.addEventListener( 'resize', resize );
         window.addEventListener('load', setup, false);
         var inp = document.getElementById('input');
         inp.value = '';
-       
     }
     
     function resize() {
+        cancelAnimationFrame(raf);
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight -100;
         ypos = height;
@@ -24,73 +29,85 @@ var canvas = document.querySelector( 'canvas' );
     setup();
     height,
     width,
+
     ypos,
-    window.addEventListener('change', draw, false);
+    window.addEventListener('change', getinput, false);
 
 
- function draw(){
-    // var contxt = (a, canvas, context);
+ function draw(input){
     clear();
-    // 
-    context.font="bold 24px arial";
-    
-    context.textAlign="left";
-    
+    context.strokeText(input, width/2, ypos);
+    context.fillRect(x, ypos, x -10, ypos-10);
+    changepos();
+ }
 
+function changepos(){
+    if(ypos >= 0) {
+        x = x-10;
+        ypos = ypos-100;
+    }
+    
+    cancelAnimationFrame(raf);
+}
+function getinput(){
+    x = width;
     var inp = document.getElementById('input');
     let inputs = inp.value;
-
-    canvas.font="bold 12px arial";
-
     inp.value = '';
-    render(inputs);
-
-    // 
-    
- }
-function render(text) {
-    clear();
-    context.textAlign="center";
-    context.fillStyle ="rgba(0,0,0,1)"
-    context.fillText(text, (width/2), ypos);
-    if(ypos>0){
-        ypos = ypos -0.1;
-
-    }
-    // if(ypos<=0){
-    //     window.requestAnimationFrame(raf);
-    // }
-    // raf = window.requestAnimationFrame(render(text));
+    input = new inputtext(context, inputs, height, width);
+    console.log("animate");
+    input.animate(0);
 }
 
-//  let x = 50;
-//  let y = 50;
-//  let lastRender = Date.now();
-//  function render() {
-//    let delta = Date.now() - lastRender;
-//    x += delta;
-//    y += delta;
-//    context.fillRect(x, y, x+10, y+10);
-//    
-//  }
-//  render();
+class inputtext{
+    #ctx;
+    #text;
+    #height;
+    #center;
 
+    constructor(ctx, input, height, width) {
+        this.#ctx = ctx;
+        this.#text = input;
+        this.#height= height;
+        this.#center = width/2;
+        this.lastime = 0;
+        this.timer = 0;
+        this. intervall = 1000/60;
+    }
 
-// audio control 
-togglevisibility.addEventListener ('click',
-    function() {           // anonyme Funktion
-		btn = document.querySelector("#btn_visibility");
-		snippets = document.querySelector("audioplayer");
-		if (btn.innerHTML == "Hide"){
-			snippets.style.visibility="hidden";
-			btn.innerHTML = "None";
-		} else if(btn.innerHTML == "None"){
-			snippets.style.display = "none";
-			btn.innerHTML = "Show";
-		} else{
-			btn.innerHTML = "Hide";
-			snippets.style.display = "grid";
-			snippets.style.visibility = "visible";
-		}
-    }, 
-    true);
+    #draw(y) {
+        this.#ctx.fillText(this.#text, this.#center, y);
+    }
+    animate(timestamp) {
+        const deltaTime = timestamp - this.lastime;
+        this.lastime = timestamp;
+        if(this.timer > this.intervall) {
+            this.#draw(this.#height);
+            this.#height -= 10;
+        }else {
+            this.timer += deltaTime;
+        }
+        if(this.#height<0){ cancelAnimationFrame(raf);
+    }
+        raf = requestAnimationFrame(this.animate.bind(this));
+    }
+
+}
+// // audio control 
+// togglevisibility.addEventListener ('click',
+//     function() {           // anonyme Funktion
+// 		btn = document.querySelector("#btn_visibility");
+// 		snippets = document.querySelector("audioplayer");
+// 		if (btn.innerHTML == "Hide"){
+// 			snippets.style.visibility="hidden";
+// 			btn.innerHTML = "None";
+// 		} else if(btn.innerHTML == "None"){
+// 			snippets.style.display = "none";
+// 			btn.innerHTML = "Show";
+// 		} else{
+// 			btn.innerHTML = "Hide";
+// 			snippets.style.display = "grid";
+// 			snippets.style.visibility = "visible";
+// 		}
+//     }, 
+//     true);
