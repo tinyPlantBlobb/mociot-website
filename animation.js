@@ -22,9 +22,8 @@ var canvas = document.querySelector( 'canvas' );
     }
 
     function clear() {
-        context.fillStyle="rgba(255, 255, 255, 0.03)";
-        context.fillRect(0,0,width,height);
-        // context.clearRect(0,0,width,height);
+        context.clearRect(0,0,width,height);
+
     }
     setup();
     height,
@@ -34,21 +33,6 @@ var canvas = document.querySelector( 'canvas' );
     window.addEventListener('change', getinput, false);
 
 
- function draw(input){
-    clear();
-    context.strokeText(input, width/2, ypos);
-    context.fillRect(x, ypos, x -10, ypos-10);
-    changepos();
- }
-
-function changepos(){
-    if(ypos >= 0) {
-        x = x-10;
-        ypos = ypos-100;
-    }
-    
-    cancelAnimationFrame(raf);
-}
 function getinput(){
     x = width;
     var inp = document.getElementById('input');
@@ -64,6 +48,7 @@ class inputtext{
     #text;
     #height;
     #center;
+    #raf;
 
     constructor(ctx, input, height, width) {
         this.#ctx = ctx;
@@ -83,13 +68,13 @@ class inputtext{
         this.lastime = timestamp;
         if(this.timer > this.intervall) {
             this.#draw(this.#height);
-            this.#height -= 10;
+            this.#height -= 1;
         }else {
             this.timer += deltaTime;
         }
-        if(this.#height<0){ cancelAnimationFrame(raf);
+        if(this.#height<0){ cancelAnimationFrame(this.#raf); clear();
     }
-        raf = requestAnimationFrame(this.animate.bind(this));
+        this.#raf = requestAnimationFrame(this.animate.bind(this));
     }
 
 }
