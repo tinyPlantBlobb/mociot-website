@@ -59,6 +59,7 @@ class inputtext{
         this.lastime = 0;
         this.timer = 0;
         this. intervall = 1000/60;
+        this.h = height;
     }
 
     #draw(y) {
@@ -66,11 +67,11 @@ class inputtext{
     }
 
     #clear(){
-        this.#ctx.clearRect(0,0, this.#center*2, height);
+        this.#ctx.clearRect(0,0, this.#center*2, this.h);
     }
 
     animate(timestamp) {
-        clear();
+        this.#clear();
         // const deltaTime = timestamp - this.lastime;
         // this.lastime = timestamp;
         // if(this.timer > this.intervall) {
@@ -81,7 +82,7 @@ class inputtext{
         //     this.timer += deltaTime;
         // }
         
-        if(this.#height<0){ cancelAnimationFrame(this.#raf); clear();
+        if(this.#height<0){ cancelAnimationFrame(this.#raf); this.#clear();
     }
         this.#raf = requestAnimationFrame(this.animate.bind(this));
     }
