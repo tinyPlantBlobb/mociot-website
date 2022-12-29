@@ -25,6 +25,7 @@ var canvas = document.querySelector( 'canvas' );
         context.clearRect(0,0,width,height);
 
     }
+
     setup();
     height,
     width,
@@ -63,15 +64,23 @@ class inputtext{
     #draw(y) {
         this.#ctx.fillText(this.#text, this.#center, y);
     }
+
+    #clear(){
+        this.#ctx.clearRect(0,0, this.#center*2, height);
+    }
+
     animate(timestamp) {
-        const deltaTime = timestamp - this.lastime;
-        this.lastime = timestamp;
-        if(this.timer > this.intervall) {
-            this.#draw(this.#height);
-            this.#height -= 1;
-        }else {
-            this.timer += deltaTime;
-        }
+        clear();
+        // const deltaTime = timestamp - this.lastime;
+        // this.lastime = timestamp;
+        // if(this.timer > this.intervall) {
+        this.#draw(this.#height);
+        
+        this.#height -= 3;
+        // }else {
+        //     this.timer += deltaTime;
+        // }
+        
         if(this.#height<0){ cancelAnimationFrame(this.#raf); clear();
     }
         this.#raf = requestAnimationFrame(this.animate.bind(this));
