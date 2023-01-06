@@ -6,14 +6,24 @@ var canvas = document.querySelector( 'canvas' );
 
         resize();
         context.font="bold 30px arial";
-        
+        addGradient();
         context.textAlign="center";
         window.addEventListener( 'resize', resize );
         window.addEventListener('load', setup, false);
         var inp = document.getElementById('input');
         inp.value = '';
+        clear();
     }
-    
+
+    function addGradient() {
+        gradient = context.createLinearGradient((width/2), 0, width/2, height);
+        gradient.addColorStop(1, 'black');
+        gradient.addColorStop(0.3, "transparent");
+        gradient.addColorStop(0, 'transparent');
+
+        context.fillStyle = gradient;
+    }
+
     function resize() {
         cancelAnimationFrame(raf);
         width = canvas.width = window.innerWidth;
@@ -35,6 +45,7 @@ var canvas = document.querySelector( 'canvas' );
 
 
 function getinput(){
+    clear();
     x = width;
     var inp = document.getElementById('input');
     let inputs = inp.value;
@@ -67,7 +78,7 @@ class inputtext{
     }
 
     #clear(){
-        this.#ctx.clearRect(0,0, this.#center*2, this.h);
+        this.#ctx.clearRect(0,this.#height, this.#center*2, this.h);
     }
 
     animate(timestamp) {
