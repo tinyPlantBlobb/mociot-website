@@ -61,16 +61,20 @@ class inputtext{
     #height;
     #center;
     #raf;
+    #txtheight;
+    #speed;
 
     constructor(ctx, input, height, width) {
         this.#ctx = ctx;
         this.#text = input;
         this.#height= height;
         this.#center = width/2;
+        this.#txtheight  = ctx.measureText(input).actualBoundingBoxAscent + ctx.measureText(input).actualBoundingBoxDescent;
         this.lastime = 0;
         this.timer = 0;
         this. intervall = 1000/60;
         this.h = height;
+        this.#speed = 3;
     }
 
     #draw(y) {
@@ -78,7 +82,11 @@ class inputtext{
     }
 
     #clear(){
-        this.#ctx.clearRect(0,this.#height, this.#center*2, this.h);
+        // this.#ctx.fillStyle= "black";
+        // this.#ctx.beginPath();
+        // this.#ctx.rect(0, this.#height , this.#center*2, this.#height);
+        this.#ctx.clearRect(0, (this.#height - this.#ctx.measureText(this.#text).actualBoundingBoxAscent) , this.#center*2, this.#txtheight + this.#speed );
+        // this.#ctx.stroke();
     }
 
     animate(timestamp) {
@@ -88,7 +96,7 @@ class inputtext{
         // if(this.timer > this.intervall) {
         this.#draw(this.#height);
         
-        this.#height -= 3;
+        this.#height -= this.#speed;
         // }else {
         //     this.timer += deltaTime;
         // }

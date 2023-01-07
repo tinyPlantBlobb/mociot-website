@@ -2,7 +2,7 @@ var c = document.querySelector('canvas');
 var ctx = c.getContext("2d");
 var mask;
 
-var pointCount = 1200;
+var pointCount = 800;
 var inp = document.getElementById('input');
 // var str = inp.value;
 inp.value = '';
@@ -30,10 +30,12 @@ point.prototype.update = function() {
     ctx.closePath();
 
     // Change direction if running into black pixel
+    //x coord
     if (this.x+this.vx >= c.width || this.x+this.vx < 0 || mask.data[coordsToI(this.x+this.vx, this.y, mask.width)] != 255) {
         this.vx *= -1;
         this.x += this.vx*2;
     }
+    //y coord
     if (this.y+this.vy >= c.height || this.y+this.vy < 0 || mask.data[coordsToI(this.x, this.y+this.vy, mask.width)] != 255) {
         this.vy *= -1;
         this.y += this.vy*2;
@@ -68,6 +70,7 @@ function loop() {
     for (var k = 0, m = points.length; k < m; k++) {
         points[k].update();
     }
+    requestAnimationFrame(loop);
 }
 
 function init() {
@@ -118,5 +121,5 @@ function coordsToI(x,y,w) {
 
 }
 
-setInterval(loop,50);
+requestAnimationFrame(loop);
 init();

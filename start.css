@@ -1,14 +1,18 @@
 * {margin: 0;padding: 0;
 }
 html,body{
+    font-size: 1em;
     height: 100%; 
    margin: 0;
    padding: 0;
-
+    align-content: center;
     
     display:flexbox;
     -ms-flex-item-align: center;
     
+}
+p {
+    text-align: center;
 }
 #navbar{
     margin: 0;
