@@ -1,9 +1,7 @@
 * {margin: 0;padding: 0;
-    }
-
+}
 html,body{
-    height: 100%;
-   background: linear-gradient(blue, #82257d); 
+    height: 100%; 
    margin: 0;
    padding: 0;
 
@@ -12,45 +10,23 @@ html,body{
     -ms-flex-item-align: center;
     
 }
-
-
 #navbar{
-    position: absolute;
-    top: 0;
     margin: 0;
     padding: 1rem;
+    align-items: center;
     box-sizing: border-box;
     display:inline-flex;
-    width: fit-content;
-    max-width: 50%;
+    width: 100%;
     border: 1rem;
     border-color: black;
-
+    background: lightblue;
 }
 
-a{    background: white;
-    padding:auto;
+#navbar a{
+    padding: auto;
     margin-left: 1rem;
     box-sizing: border-box;
     border: 1px;
     border-style: solid;
     border-color: black;
-}
-
-
-#canvas{
-
-    margin:1rem;
-    padding: 0;
-}
-head{
-    
-    display: flex;
-    flex-direction: row;
-}
-#input{
-    margin-left: 15%;
-    
-    height: min-content;
-    width: 70%;
 }
