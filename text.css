@@ -29,8 +29,9 @@ html,body{
 
 }
 
-a{    background: white;
-    padding:auto;
+a{    
+    background: white;
+    padding: 0.5em;
     margin-left: 1rem;
     box-sizing: border-box;
     border: 1px;
