@@ -3,11 +3,12 @@ var ctx = c.getContext("2d");
 var mask;
 
 var pointCount = 800;
-var inp = document.getElementById('input');
-// var str = inp.value;
-inp.value = '';
+window.addEventListener('change', inputprocessing);
+
 var str = "unfinished";
 var fontStr = "bold 128pt Helvetica Neue, Helvetica, Arial, sans-serif";
+
+
 
 ctx.font = fontStr;
 ctx.textAlign = "center";
@@ -16,6 +17,15 @@ c.height = 128; // Set to font size
 
 var whitePixels = [];
 var points = [];
+function inputprocessing(){
+    var inp = document.getElementById('input');
+    str = inp.value;
+    inp.value = '';
+    whitePixels = [];
+    points = [];
+    init();
+    
+}
 var point = function(x,y,vx,vy){
     this.x = x;
     this.y = y;
