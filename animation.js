@@ -2,38 +2,48 @@ var canvas = document.querySelector( 'canvas' );
     var context = canvas.getContext( '2d' );
     let input;
     let raf;
+    var allinputs= [];
     function setup() {
-
         resize();
-        context.font="bold 30px arial";
+        //sets the fill sytle of the Text
         addGradient();
         context.textAlign="center";
+
         window.addEventListener( 'resize', resize );
         window.addEventListener('load', setup, false);
+        //initialising the input field and setting the value to an empty string
         var inp = document.getElementById('input');
         inp.value = '';
         clear();
     }
 
     function addGradient() {
+    
         gradient = context.createLinearGradient((width/2), 0, width/2, height);
+        //lets the text fade into transparency when it reaches the top of the page
         gradient.addColorStop(1, 'black');
         gradient.addColorStop(0.3, "transparent");
         gradient.addColorStop(0, 'transparent');
-
         context.fillStyle = gradient;
     }
 
     function resize() {
-        cancelAnimationFrame(raf);
+        //ends the current animations for each input still going
+        allinputs.forEach(inp => {
+            inp.endanimation();
+        });
+        clear;
+        //sets the canvas width and height to the new width and height of the window
         width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight -100;
+        height = canvas.height = window.innerHeight - document.getElementById("fly").style.height -32;
         ypos = height;
+        //resetting the text size 
+        context.font="bold 2vw arial";
+        
     }
 
     function clear() {
         context.clearRect(0,0,width,height);
-
     }
 
     setup();
@@ -45,13 +55,19 @@ var canvas = document.querySelector( 'canvas' );
 
 
 function getinput(){
+    //clear the current screen
     clear();
-    x = width;
+    //get the input field
     var inp = document.getElementById('input');
     let inputs = inp.value;
+    //clear the input field
     inp.value = '';
+    //create a new animation object
     input = new inputtext(context, inputs, height, width);
+    //add animation obj. to list of all animated objects
+    allinputs.push(input);
     console.log("animate");
+    // let it move
     input.animate(0);
 }
 
@@ -78,32 +94,31 @@ class inputtext{
     }
 
     #draw(y) {
+        this.#ctx.textAlign="center";
         this.#ctx.fillText(this.#text, this.#center, y);
     }
 
     #clear(){
-        // this.#ctx.fillStyle= "black";
-        // this.#ctx.beginPath();
-        // this.#ctx.rect(0, this.#height , this.#center*2, this.#height);
         this.#ctx.clearRect(0, (this.#height - this.#ctx.measureText(this.#text).actualBoundingBoxAscent) , this.#center*2, this.#txtheight + this.#speed );
-        // this.#ctx.stroke();
     }
 
     animate(timestamp) {
         this.#clear();
-        // const deltaTime = timestamp - this.lastime;
-        // this.lastime = timestamp;
-        // if(this.timer > this.intervall) {
+
         this.#draw(this.#height);
         
         this.#height -= this.#speed;
-        // }else {
-        //     this.timer += deltaTime;
-        // }
-        
-        if(this.#height<0){ cancelAnimationFrame(this.#raf); this.#clear();
+
+        if(this.#height<0){
+            this.endanimation();
     }
         this.#raf = requestAnimationFrame(this.animate.bind(this));
+    }
+
+    endanimation(){
+        cancelAnimationFrame(this.#raf); 
+        this.#clear();
+        allinputs.splice(allinputs.indexOf(this),1);
     }
 
 }
