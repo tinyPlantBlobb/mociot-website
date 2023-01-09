@@ -2,11 +2,20 @@ var c = document.querySelector('canvas');
 var ctx = c.getContext("2d");
 var mask;
 
-var pointCount = 800;
+var pointCount;
+var maxpoints= 800;
 window.addEventListener('change', inputprocessing);
 
+function updatepointNumber() {
+    if (str.length*100 <= maxpoints){
+        pointCount = str.length *100;
+    } else {
+        pointCount = maxpoints;
+    }
+}
+
 var str = "unfinished";
-var fontStr = "bold 128pt Helvetica Neue, Helvetica, Arial, sans-serif";
+var fontStr = "bold 10vw Helvetica Neue, Helvetica, Arial, sans-serif";
 
 
 
@@ -17,12 +26,17 @@ c.height = 128; // Set to font size
 
 var whitePixels = [];
 var points = [];
+
+
+
 function inputprocessing(){
+
     var inp = document.getElementById('input');
     str = inp.value;
     inp.value = '';
     whitePixels = [];
     points = [];
+
     init();
     
 }
@@ -84,6 +98,7 @@ function loop() {
 }
 
 function init() {
+    updatepointNumber();
     // Draw text
     ctx.beginPath();
     ctx.fillStyle = "#000";
@@ -103,6 +118,7 @@ function init() {
 
     // Save all white pixels in an array
     for (var i = 0; i < mask.data.length; i += 4) {
+        //if pixel is white
         if (mask.data[i] == 255 && mask.data[i+1] == 255 && mask.data[i+2] == 255 && mask.data[i+3] == 255) {
             whitePixels.push([iToX(i,mask.width),iToY(i,mask.width)]);
         }
@@ -115,21 +131,24 @@ function init() {
 
 function addPoint() {
     var spawn = whitePixels[Math.floor(Math.random()*whitePixels.length)];
-
     var p = new point(spawn[0],spawn[1], Math.floor(Math.random()*2-1), Math.floor(Math.random()*2-1));
     points.push(p);
 }
-
+//translates array indexes to X coords
 function iToX(i,w) {
     return ((i%(4*w))/4);
 }
+//translates array indexes to Y coords
 function iToY(i,w) {
     return (Math.floor(i/(4*w)));
 }
+ 
+//translates cords to indexes
 function coordsToI(x,y,w) {
     return ((mask.width*y)+x)*4;
-
+ 
 }
+
 
 requestAnimationFrame(loop);
 init();
