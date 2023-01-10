@@ -59,12 +59,12 @@ head{
 }
 
 
-@media (min-width: 40rem) and (max-width: 80rem){
+@media screen and (max-width: 80rem){
     * {margin: 0;padding: 0;
     }
 
 html,body{
-    font-size: 1em;
+    font-size: 1rem;
     height: 100%;
    background: linear-gradient(blue, #82257d); 
    margin: 0;
@@ -112,7 +112,7 @@ head{
     flex-direction: row;
 }
     #input{
-        font-size: 16px;
+        font-size: 1rem;
         margin-left: 15%;
         
         height: min-content;
