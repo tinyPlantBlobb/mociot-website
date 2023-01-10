@@ -35,10 +35,13 @@ var canvas = document.querySelector( 'canvas' );
         clear;
         //sets the canvas width and height to the new width and height of the window
         width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight - document.getElementById("fly").style.height -32;
+        height = canvas.height = window.innerHeight - document.getElementById("fly").style.height 
+        -document.getElementById('input').style.height-32;
         ypos = height;
         //resetting the text size 
         context.font="bold 2vw arial";
+        //reset gradient
+        addGradient();
         
     }
 

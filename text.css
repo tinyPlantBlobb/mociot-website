@@ -41,7 +41,7 @@ a{
 
 
 #canvas{
-    font-size: 1em;
+
     margin:1rem;
     padding: 0;
 }
@@ -51,9 +51,69 @@ head{
     flex-direction: row;
 }
 #input{
-    font-size: 1em;
+    font-size: 1vw;
     margin-left: 15%;
     
     height: min-content;
     width: 70%;
+}
+@media (min-width: 40rem) and (max-width: 60rem){
+    * {margin: 0;padding: 0;
+    }
+
+html,body{
+    font-size: 1em;
+    height: 100%;
+   background: linear-gradient(blue, #82257d); 
+   margin: 0;
+   padding: 0;
+
+    
+    display:flexbox;
+    -ms-flex-item-align: center;
+    
+}
+
+
+#navbar{
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 1rem;
+    box-sizing: border-box;
+    display:inline-flex;
+    width: fit-content;
+    max-width: 50%;
+    border: 1rem;
+    border-color: black;
+
+}
+
+a{    
+    background: white;
+    padding: 0.5em;
+    margin-left: 1rem;
+    box-sizing: border-box;
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+
+#canvas{
+    margin:0;
+    padding: 0;
+}
+head{
+    
+    display: flex;
+    flex-direction: row;
+}
+    #input{
+        font-size: 2vw;
+        margin-left: 15%;
+        
+        height: min-content;
+        width: 70%;
+    }
 }
