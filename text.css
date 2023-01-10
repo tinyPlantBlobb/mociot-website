@@ -57,7 +57,9 @@ head{
     height: min-content;
     width: 70%;
 }
-@media (min-width: 40rem) and (max-width: 60rem){
+
+
+@media (min-width: 40rem) and (max-width: 80rem){
     * {margin: 0;padding: 0;
     }
 
@@ -110,10 +112,15 @@ head{
     flex-direction: row;
 }
     #input{
-        font-size: 2vw;
+        font-size: 16px;
         margin-left: 15%;
         
         height: min-content;
         width: 70%;
     }
+    select:focus,
+    textarea:focus,
+    input:focus {
+    font-size: 16px;
+  }
 }
