@@ -31,7 +31,7 @@ br{
     width: 100%;
     border: 1rem;
     border-color: black;
-    background: lightgreen;
+
 }
 
 #navbar a{
@@ -42,6 +42,8 @@ br{
     border-style: solid;
     border-color: black;
     border-radius: 3px;
+    color: aliceblue;
+    background-color: forestgreen;
 }
 
 @media screen and (max-width: 60rem) {
