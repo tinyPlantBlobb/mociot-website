@@ -35,11 +35,14 @@ var canvas = document.querySelector( 'canvas' );
         clear;
         //sets the canvas width and height to the new width and height of the window
         width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight - document.getElementById("fly").style.height 
-        -document.getElementById('input').style.height-32;
+        height = canvas.height = window.innerHeight - document.getElementById("start").style.height 
+        - document.getElementById('input').style.height-32;
         ypos = height;
         //resetting the text size 
         context.font="bold 2vw arial";
+        if(width < 960){
+            context.font="bold 2em arial";
+        }
         //reset gradient
         addGradient();
         
@@ -102,7 +105,10 @@ class inputtext{
     }
 
     #clear(){
-        this.#ctx.clearRect(0, (this.#height - this.#ctx.measureText(this.#text).actualBoundingBoxAscent) , this.#center*2, this.#txtheight + this.#speed );
+        this.#ctx.clearRect(0, 
+            (this.#height - this.#ctx.measureText(this.#text).actualBoundingBoxAscent) , 
+            this.#center*2, 
+            this.#txtheight + this.#speed*2);
     }
 
     animate(timestamp) {

@@ -4,7 +4,7 @@
 html,body{
     font-size: 1em;
     height: 100%;
-   background: linear-gradient(blue, #82257d); 
+   background: linear-gradient(blue, darkgreen); 
    margin: 0;
    padding: 0;
 
@@ -37,7 +37,9 @@ a{
     border: 1px;
     border-style: solid;
     border-color: black;
+    border-radius: 3px;
 }
+
 
 
 #canvas{
@@ -51,36 +53,22 @@ head{
     flex-direction: row;
 }
 #input{
-    font-size: 1vw;
+    font-size: 1em;
     margin-left: 15%;
     
     height: min-content;
     width: 70%;
 }
 
-
-@media screen and (max-width: 80rem){
+/* mobile devices */
+@media screen and (max-width: 60rem) {
     * {margin: 0;padding: 0;
     }
-
-html,body{
-    font-size: 1rem;
-    height: 100%;
-   background: linear-gradient(blue, #82257d); 
-   margin: 0;
-   padding: 0;
-
     
-    display:flexbox;
-    -ms-flex-item-align: center;
-    
-}
-
-
-#navbar{
+    #navbar{
     position: absolute;
-    top: 0;
     margin: 0;
+    right: 0;
     padding: 1rem;
     box-sizing: border-box;
     display:inline-flex;
@@ -88,29 +76,75 @@ html,body{
     max-width: 50%;
     border: 1rem;
     border-color: black;
+    
+    }
 
-}
-
-a{    
-    background: white;
-    padding: 0.5em;
-    margin-left: 1rem;
-    box-sizing: border-box;
-    border: 1px;
-    border-style: solid;
-    border-color: black;
-}
-
-
-#canvas{
+    #canvas{
     margin:0;
     padding: 0;
-}
-head{
-    
+    }
+
+    head{
     display: flex;
     flex-direction: row;
+    }
+
+    #input{
+        margin-left: 5%;
+        padding: 0;
+        font-size: 1em;
+        height: min-content;
+        width: 90%;
+    }
+    
+    select:focus,
+    textarea:focus,
+    input:focus {
+    font-size: 16px;
+    }
 }
+
+
+/* for very wide screens */
+@media screen and (min-width: 1500px) {
+
+    html,body{
+        font-size: 1em;
+
+        display:flexbox;
+        -ms-flex-item-align: center;
+        
+    }
+    
+    
+    #navbar{
+        position: absolute;
+        top: 0;
+        margin: 0;
+        padding: 1em;
+        box-sizing: border-box;
+        display:inline-flex;
+        width: fit-content;
+        max-width: 50%;
+        border: 1rem;
+        border-color: black;
+    
+    }
+    
+
+    
+    #canvas{
+    
+        margin:1rem;
+        padding: 0;
+    }
+
+    head{
+        
+        display: flex;
+        flex-direction: row;
+    }
+    
     #input{
         font-size: 1rem;
         margin-left: 15%;
@@ -118,9 +152,5 @@ head{
         height: min-content;
         width: 70%;
     }
-    select:focus,
-    textarea:focus,
-    input:focus {
-    font-size: 16px;
-  }
+    
 }

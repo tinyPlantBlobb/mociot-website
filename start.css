@@ -1,6 +1,10 @@
-* {margin: 0;padding: 0;
+* {
+    margin: 0;
+    padding: 0;
 }
+
 html,body{
+    background-color: rgb(221, 240, 197);
     font-size: 1em;
     height: 100%; 
    margin: 0;
@@ -13,6 +17,10 @@ html,body{
 }
 p {
     text-align: center;
+    padding: 1em;
+}
+br{
+    padding: 1em;
 }
 #navbar{
     margin: 0;
@@ -23,7 +31,7 @@ p {
     width: 100%;
     border: 1rem;
     border-color: black;
-    background: lightblue;
+    background: lightgreen;
 }
 
 #navbar a{
@@ -33,4 +41,55 @@ p {
     border: 1px;
     border-style: solid;
     border-color: black;
+    border-radius: 3px;
+}
+
+@media screen and (max-width: 60rem) {
+    * {margin: 0;padding: 0;
+    }
+    html,body{
+        background-image: url();
+        font-size: 1em;
+        height: 100%; 
+       margin: 0;
+       padding: 0;
+        align-content: center;
+        
+        display:flexbox;
+        -ms-flex-item-align: center;
+        
+    }
+    p {
+        text-align: center;
+        padding: 1em;
+    }
+    br{
+        padding: 1em;
+    }
+    nav {
+        margin: 1em;
+        padding: 1rem;
+        align-items: center;
+        box-sizing: border-box;
+        display:inline-flex;
+        width: 100%;
+        border: 1rem;
+        border-color: black;
+        background: lightblue;
+    }
+    
+    #navbar a{
+        position:absolute;
+
+        right: 1em;
+        padding:  0.5em;
+
+        box-sizing: border-box;
+        border: 1px;
+        border-style: solid;
+        border-color: black;
+        border-radius: 3px;
+
+    }
+    
 }
