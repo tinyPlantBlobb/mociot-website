@@ -43,7 +43,7 @@ br{
     border-color: black;
     border-radius: 3px;
     color: aliceblue;
-    background-color: forestgreen;
+    background-color: darkgreen;
 }
 
 @media screen and (max-width: 60rem) {
@@ -63,26 +63,16 @@ br{
     }
     p {
         text-align: center;
-        padding: 1em;
     }
     br{
-        padding: 1em;
-    }
-    nav {
         margin: 1em;
-        padding: 1rem;
-        align-items: center;
-        box-sizing: border-box;
-        display:inline-flex;
-        width: 100%;
-        border: 1rem;
-        border-color: black;
-        background: lightblue;
     }
+    
+    
     
     #navbar a{
         position:absolute;
-
+        margin-top: 1em;
         right: 1em;
         padding:  0.5em;
 
@@ -91,6 +81,21 @@ br{
         border-style: solid;
         border-color: black;
         border-radius: 3px;
+
+    }
+    a:not(#navbar a){
+        position:static;
+        align-self: center;
+        margin-top: 2em;
+        padding:  0.5em;
+        top: 2em;
+        box-sizing: border-box;
+        border: 1px;
+        border-style: solid;
+        border-color: black;
+        border-radius: 3px;
+        background-color: darkgreen;
+        color: aliceblue;
 
     }
     
