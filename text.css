@@ -4,11 +4,14 @@
 html,body{
     font-size: 1em;
     height: 100%;
-   background: linear-gradient(blue, darkgreen); 
+   background-color: linear-gradient(blue, darkgreen);
+   background-image: url(bg2.png);
+   background-position: bottom;
+   background-repeat: repeat-x;
    margin: 0;
    padding: 0;
 
-    
+
     display:flexbox;
     -ms-flex-item-align: center;
     
@@ -46,6 +49,7 @@ a{
 
     margin:1rem;
     padding: 0;
+
 }
 head{
     

@@ -10,7 +10,9 @@ html,body{
    margin: 0;
    padding: 0;
     align-content: center;
-    
+    background-image: url(background.png);
+    background-position: bottom;
+    background-repeat: repeat-x;
     display:flexbox;
     -ms-flex-item-align: center;
     
