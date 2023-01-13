@@ -42,7 +42,7 @@ var canvas = document.querySelector( 'canvas' );
         //resetting the text size 
         context.font="bold 2vw arial";
         if(width < 960){
-            context.font="bold 2em arial";
+            context.font="bold 1em arial";
         }
         //reset gradient
         addGradient();
@@ -69,15 +69,47 @@ function getinput(){
     let inputs = inp.value;
     //clear the input field
     inp.value = '';
-    //create a new animation object
-    input = new inputtext(context, inputs, height, width);
-    //add animation obj. to list of all animated objects
-    allinputs.push(input);
-    console.log("animate");
-    // let it move
-    input.animate(0);
+
+    //create a new animation object for each part of the input that is wide enough for the screen
+    if(context.measureText(inputs).width > width){
+        lines = getLines(inputs);
+        for(var i = 0; i <lines.length; i++){
+            str = lines[i];
+            input = new inputtext(context, lines[i], height + 
+                (context.measureText(str).actualBoundingBoxAscent +context.measureText(str).actualBoundingBoxDescent)*i, width);
+            allinputs.push(input);
+            input.animate();
+        }
+    } else {
+        input = new inputtext(context, inputs, height, width);
+        //add animation obj. to list of all animated objects
+        allinputs.push(input);
+        // let it move
+        input.animate(0)
+        };
     addStar();
     
+}
+
+function getLines(text) {
+    var words = text.split(" ");
+    var lines = [];
+    var currentLine = words[0];
+
+    for (var i = 1; i < words.length; i++) {
+        var word = words[i];
+        var wdt = context.measureText(currentLine + " " + word).actualBoundingBoxLeft
+            +context.measureText(currentLine + " " + word).actualBoundingBoxRight;
+        if (wdt < width) {
+            currentLine += " " + word;
+        } else {
+            lines.push(currentLine);
+            currentLine = word;
+        }
+    }
+    lines.push(currentLine);
+    console.log(lines);
+    return lines;
 }
 
 function addStar() {
@@ -102,7 +134,7 @@ class Star{
         this.#ypos = ypos;
         this.#ctx = ctx;
         this.#brighness = 1;
-        this.#bright= 0.1;
+        this.#bright= 0.05;
         this.#size = 5;
 
     }
@@ -155,7 +187,7 @@ class inputtext{
     }
 
     updatewidth(){
-        this.#txtheight  = ctx.measureText(input).actualBoundingBoxAscent + ctx.measureText(input).actualBoundingBoxDescent;
+        this.#txtheight  = this.#ctx.measureText(input).actualBoundingBoxAscent + this.#ctx.measureText(input).actualBoundingBoxDescent;
 
     }
 
@@ -165,13 +197,13 @@ class inputtext{
     }
 
     #clear(){
-        this.#ctx.clearRect(this.#center-(this.#ctx.measureText(this.#text).actualBoundingBoxLeft), 
-            this.#height - this.#ctx.measureText(this.#text).actualBoundingBoxAscent, 
-            this.#center+this.#ctx.measureText(this.#text).actualBoundingBoxLeft, 
+        this.#ctx.clearRect(this.#center-(this.#ctx.measureText(this.#text).actualBoundingBoxLeft +1), 
+            this.#height - this.#ctx.measureText(this.#text).actualBoundingBoxAscent -1, 
+            this.#center+this.#ctx.measureText(this.#text).actualBoundingBoxLeft +1, 
             this.#txtheight + this.#speed*2);
     }
 
-    animate(timestamp) {
+    animate() {
         this.#clear();
 
         this.#draw(this.#height);
