@@ -5,7 +5,7 @@ html,body{
     font-size: 1em;
     height: 100%;
    /* background-color: linear-gradient(blue, darkgreen); */
-   background-color: lightblue;
+   background-color: rgb(82, 153, 245);
    background-image: url(bg2.png);
    background-position: bottom;
    background-repeat: repeat-x;

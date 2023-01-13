@@ -30,6 +30,7 @@ var canvas = document.querySelector( 'canvas' );
     function resize() {
         //ends the current animations for each input still going
         allinputs.forEach(inp => {
+            inp.updatewidth();
             inp.endanimation();
         });
         clear;
@@ -58,7 +59,7 @@ var canvas = document.querySelector( 'canvas' );
 
     ypos,
     window.addEventListener('change', getinput, false);
-
+    stars = [];
 
 function getinput(){
     //clear the current screen
@@ -75,7 +76,61 @@ function getinput(){
     console.log("animate");
     // let it move
     input.animate(0);
+    addStar();
+    
 }
+
+function addStar() {
+    xpos = Math.floor(Math.random()*width);
+    ypos = Math.floor(Math.random()*(height/2));
+    var star = new Star(xpos, ypos, context);
+    stars.push(star);
+    star.animate();
+}
+
+class Star{
+    #xpos;
+    #ypos;
+    #ctx;
+    #brighness;
+    #raf;
+    #size;
+    #bright;
+
+    constructor(xpos,ypos, ctx){
+        this.#xpos = xpos;
+        this.#ypos = ypos;
+        this.#ctx = ctx;
+        this.#brighness = 1;
+        this.#bright= 0.1;
+        this.#size = 5;
+
+    }
+
+    draw(){
+        this.#ctx.strokeStyle =  `rgba(255,255,77,${this.#brighness} )`;
+        this.#ctx.beginPath();
+        this.#ctx.moveTo(this.#xpos, this.#ypos);
+        this.#ctx.lineTo(this.#xpos + this.#size, this.#ypos);
+        this.#ctx.lineTo(this.#xpos - this.#size, this.#ypos);
+        this.#ctx.lineTo(this.#xpos , this.#ypos);
+        this.#ctx.lineTo(this.#xpos , this.#ypos+ this.#size);
+        this.#ctx.lineTo(this.#xpos , this.#ypos- this.#size);
+        this.#ctx.stroke();
+        
+    }
+
+    animate(){
+
+        this.draw();
+        this.#brighness += this.#bright;
+        if(this.#brighness <= 0 || this.#brighness >=1){
+            this.#bright = -this.#bright;
+        }
+        this.#raf = requestAnimationFrame(this.animate.bind(this));
+    }
+}
+
 
 class inputtext{
     #ctx;
@@ -99,15 +154,20 @@ class inputtext{
         this.#speed = 3;
     }
 
+    updatewidth(){
+        this.#txtheight  = ctx.measureText(input).actualBoundingBoxAscent + ctx.measureText(input).actualBoundingBoxDescent;
+
+    }
+
     #draw(y) {
         this.#ctx.textAlign="center";
         this.#ctx.fillText(this.#text, this.#center, y);
     }
 
     #clear(){
-        this.#ctx.clearRect(0, 
-            (this.#height - this.#ctx.measureText(this.#text).actualBoundingBoxAscent) , 
-            this.#center*2, 
+        this.#ctx.clearRect(this.#center-(this.#ctx.measureText(this.#text).actualBoundingBoxLeft), 
+            this.#height - this.#ctx.measureText(this.#text).actualBoundingBoxAscent, 
+            this.#center+this.#ctx.measureText(this.#text).actualBoundingBoxLeft, 
             this.#txtheight + this.#speed*2);
     }
 
@@ -131,21 +191,3 @@ class inputtext{
     }
 
 }
-// // audio control 
-// togglevisibility.addEventListener ('click',
-//     function() {           // anonyme Funktion
-// 		btn = document.querySelector("#btn_visibility");
-// 		snippets = document.querySelector("audioplayer");
-// 		if (btn.innerHTML == "Hide"){
-// 			snippets.style.visibility="hidden";
-// 			btn.innerHTML = "None";
-// 		} else if(btn.innerHTML == "None"){
-// 			snippets.style.display = "none";
-// 			btn.innerHTML = "Show";
-// 		} else{
-// 			btn.innerHTML = "Hide";
-// 			snippets.style.display = "grid";
-// 			snippets.style.visibility = "visible";
-// 		}
-//     }, 
-//     true);
