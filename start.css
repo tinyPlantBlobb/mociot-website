@@ -4,7 +4,7 @@
 }
 
 html,body{
-    background-color: rgb(221, 240, 197);
+    background-color: rgb(180, 209, 241);
     font-size: 1em;
     height: 100%; 
    margin: 0;
@@ -15,6 +15,7 @@ html,body{
     background-repeat: repeat-x;
     display:flexbox;
     -ms-flex-item-align: center;
+    
     
 }
 p {
@@ -46,6 +47,11 @@ br{
     border-radius: 3px;
     color: aliceblue;
     background-color: darkgreen;
+}
+a:not(#navbar a){
+    
+    color: rgb(2, 61, 2);
+
 }
 
 @media screen and (max-width: 60rem) {
