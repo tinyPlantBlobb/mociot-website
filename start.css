@@ -54,7 +54,7 @@ a:not(#navbar a){
 
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 800px) {
     * {margin: 0;padding: 0;
     }
     html,body{

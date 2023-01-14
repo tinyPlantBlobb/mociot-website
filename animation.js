@@ -62,8 +62,7 @@ var canvas = document.querySelector( 'canvas' );
     stars = [];
 
 function getinput(){
-    //clear the current screen
-    clear();
+
     //get the input field
     var inp = document.getElementById('input');
     let inputs = inp.value;
@@ -76,7 +75,9 @@ function getinput(){
         for(var i = 0; i <lines.length; i++){
             str = lines[i];
             input = new inputtext(context, lines[i], height + 
-                (context.measureText(str).actualBoundingBoxAscent +context.measureText(str).actualBoundingBoxDescent)*i, width);
+                (context.measureText(str).actualBoundingBoxAscent 
+                +context.measureText(str).actualBoundingBoxDescent)*i, 
+                width);
             allinputs.push(input);
             input.animate();
         }
@@ -153,7 +154,6 @@ class Star{
     }
 
     animate(){
-
         this.draw();
         this.#brighness += this.#bright;
         if(this.#brighness <= 0 || this.#brighness >=1){
