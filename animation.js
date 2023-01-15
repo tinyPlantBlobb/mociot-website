@@ -3,6 +3,7 @@ var canvas = document.querySelector( 'canvas' );
     let input;
     let raf;
     var allinputs= [];
+    
     function setup() {
         resize();
         //sets the fill sytle of the Text
