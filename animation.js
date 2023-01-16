@@ -200,7 +200,7 @@ class inputtext{
     #clear(){
         this.#ctx.clearRect(this.#center-(this.#ctx.measureText(this.#text).actualBoundingBoxLeft +1), 
             this.#height - this.#ctx.measureText(this.#text).actualBoundingBoxAscent -1, 
-            this.#center+this.#ctx.measureText(this.#text).actualBoundingBoxLeft +1, 
+            this.#ctx.measureText(this.#text).actualBoundingBoxRight +this.#ctx.measureText(this.#text).actualBoundingBoxLeft +2, 
             this.#txtheight + this.#speed*2);
     }
 
